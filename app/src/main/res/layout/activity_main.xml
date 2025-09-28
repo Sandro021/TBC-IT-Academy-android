@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+    <ToggleButton
+        android:id="@+id/langButton"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:textOn="Georgian"
+        android:textOff="English"
+        android:checked="true"
+        android:layout_marginBottom="150dp"
+        android:background="@color/teal_200"
+        />
+    <EditText
+        android:id="@+id/etNumber"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="write number from 1 - 1000"
+        android:textAlignment="center"
+        android:background="#157C71"
+
+        android:layout_marginHorizontal="30dp"
+        />
+
+
+    <TextView
+        android:id="@+id/twRes"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#4BE44B"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"/>
+    <Button
+        android:id="@+id/btPrint"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="10dp"
+        android:background="#EE001C"
+        android:text="Print"
+
+        />
+
+</LinearLayout>
