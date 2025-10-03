@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
         }
         outputButton.setOnClickListener {
             val res = findAnagrams(allWords).size.toString()
-            anagramCount.text = "Anagram-> $res"
+            anagramCount.text = "Anagram->$res"
         }
         clearButton.setOnClickListener {
             anagramCount.text = "Anagram->0"
