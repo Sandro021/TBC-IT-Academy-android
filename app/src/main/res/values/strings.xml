@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Exam-1</string>
+    <string name="enter_anagram">Enter anagram</string>
+    <string name="save">Save</string>
+    <string name="output">Output</string>
+    <string name="anagram_0"><![CDATA[Anagram->0]]></string>
+    <string name="clear">Clear</string>
+</resources>
