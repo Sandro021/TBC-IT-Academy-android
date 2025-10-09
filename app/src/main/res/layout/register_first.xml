@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+ <ImageButton
+     android:id="@+id/back_arrow"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:src="@drawable/backarrow"
+     android:layout_marginStart="20dp"
+     android:layout_marginTop="20dp"
+     tools:ignore="ContentDescription"
+     android:background="@color/white"
+     />
+<androidx.appcompat.widget.AppCompatTextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/register"
+    android:layout_marginTop="30dp"
+    android:layout_marginStart="20dp"
+    android:textSize="30sp"
+    android:textColor="@color/black"
+    android:fontFamily="@font/comfortaa"
+    />
+
+<androidx.appcompat.widget.AppCompatEditText
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:background="@drawable/rect_background"
+    android:hint="@string/example_gmail_com"
+    android:padding="12dp"
+    android:textColor="@color/black"
+    android:inputType="textEmailAddress"
+    />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/rect_background"
+        android:hint="@string/password"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/next"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:background="@drawable/register_bg"
+
+        />
+</LinearLayout>

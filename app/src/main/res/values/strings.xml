@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Homework-7</string>
+    <string name="photo">Photo</string>
+    <string name="log_in">log in</string>
+    <string name="register">Register</string>
+    <string name="pawel_czerwinski">Pawel Czerwinski</string>
+    <string name="pawel_czerwinskitwo">@pawel_czerwinski</string>
+    <string name="example_gmail_com">example@gmail.com</string>
+    <string name="password">*********</string>
+    <string name="next">Next</string>
+    <string name="sandro">Sandro</string>
+    <string name="sign_up">Sign up</string>
+    <string name="terms_text">By signing up, you agree to Photo’s
+        <a href="example.com">Terms of Service</a>
+    and <a href= "example.com">Privacy Policy</a>.</string>
+    <string name="welcome">welcome</string>
+
+
+</resources>
