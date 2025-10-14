@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Homework-8</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">Age</string>
+    <string name="email">Email</string>
+    <string name="active_members_0"><![CDATA[Active members -> 0]]></string>
+    <string name="deleted_members_0"><![CDATA[Deleted members -> 0]]></string>
+    <string name="enter_email_to_delete_user">Enter Email to delete user</string>
+    <string name="remove_user">Remove User</string>
+    <string name="add_user">Add user</string>
+    <string name="update_user">Update user</string>
+    <string name="if_you_enter_registered_email_to_update_your_info">If you enter registered email to update your info</string>
+    <string name="you_can_update_info_if_you_enter_registered_email">You can update info if you enter registered email</string>
+    <string name="fillAllFields">"Fill all above fields to add user "</string>
+    <string name="user_already_exists">User already exists</string>
+    <string name="active_members"><![CDATA[Active members -> %1$d]]></string>
+    <string name="enter_mail_to_delete_user">Enter mail to delete user</string>
+    <string name="User_does_not_exists">“User does not exist</string>
+    <string name="deleted_members">User deleted successfully</string>
+    <string name="removed_users"><![CDATA[Removed users -> %1$d]]></string>
+    <string name="first_you_have_to_create_account">"First you have to create account "</string>
+    <string name="user_updated_successfully">User updated successfully</string>
+    <string name="fill_email_field_to_update_user">Fill email field to update user</string>
+    <string name="user_added_successfully">User added successfully</string>
+    <string name="please_enter_valid_email_address">Please enter valid email address</string>
+    <string name="status">Status</string>
+    <string name="update_successfully">Update successfully!</string>
+    <string name="user_deleted_successfully">User deleted successfully</string>
+    <string name="error">Error</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="users_do_not_exist">Users do not exist</string>
+    <string name="status_message">status message</string>
+    <string name="user_updated">user updated</string>
+</resources>

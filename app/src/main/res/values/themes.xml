@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.Homework9" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize colors if needed -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
+</resources>
