@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Exam-2</string>
+    <string name="search_field">Search field</string>
+    <string name="add_new_user">Add new user</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="birthday">Birthday</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="add_user">Add user</string>
+    <string name="please_fill_all_the_fields">Please fill all the fields</string>
+    <string name="users_info">Users info</string>
+    <string name="please_enter_valid_email_address">Please enter valid email address</string>
+    <string name="birthday_cant_be_converted">Birthday cant be converted</string>
+</resources>

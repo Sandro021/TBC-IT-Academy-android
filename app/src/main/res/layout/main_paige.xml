@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearchField"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/search_field"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etInfoField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/users_info"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAddUser"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="60dp"
+        android:background="@drawable/edit_text_bg"
+        android:text="@string/add_new_user"
+        android:textAlignment="center"
+        android:textSize="20sp"
+
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
