@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/displayUsersPage">
+
+    <fragment
+        android:id="@+id/displayUsersPage"
+        android:name="com.example.homework_11.DisplayUsersPage"
+        android:label="DisplayUsersPage" >
+        <action
+            android:id="@+id/action_displayUsersPage_to_addUserPage"
+            app:destination="@id/addUserPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUserPage"
+        android:name="com.example.homework_11.AddUserPage"
+        android:label="AddUserPage" >
+        <action
+            android:id="@+id/action_addUserPage_to_displayUsersPage"
+            app:destination="@id/displayUsersPage" />
+    </fragment>
+</navigation>

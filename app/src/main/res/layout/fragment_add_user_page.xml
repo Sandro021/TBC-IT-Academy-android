@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background_photo"
+    >
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background"
+        android:hint="@string/first_name"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etLastName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background"
+        android:hint="@string/last_name"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etAge"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background"
+        android:hint="@string/age"
+        android:inputType="number"
+        android:padding="6dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="italic" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background"
+        android:hint="@string/email"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAddUsers"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background"
+        android:text="@string/add_user"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background"
+        android:text="@string/update_user"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btRemoveUser"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/background"
+        android:text="@string/remove_user"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
