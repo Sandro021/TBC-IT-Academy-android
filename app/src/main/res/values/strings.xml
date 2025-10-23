@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Homework-12</string>
+    <string name="category">Category</string>
+    <string name="belt_suit_blazer">Belt suit blazer</string>
+    <string name="_120">$120</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all">All</string>
+    <string name="party">Party</string>
+    <string name="camping">Camping</string>
+    <string name="footballer">Footballer</string>
+    <string name="category2">Category2</string>
+    <string name="category3">Category3</string>
+    <string name="party_blazer">Party Blazer</string>
+    <string name="formal_suit">Formal Suit</string>
+    <string name="sleeping_bag">Sleeping Bag</string>
+    <string name="_70">$70</string>
+    <string name="ronaldo">Ronaldo</string>
+    <string name="infinity">Infinity</string>
+    <string name="messi">Messi</string>
+    <string name="_100m">100M</string>
+    <string name="ibra">Ibra</string>
+    <string name="_80m">80M</string>
+    <string name="magician">Magician</string>
+    <string name="_150m">150M</string>
+</resources>
