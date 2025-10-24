@@ -36,7 +36,7 @@ class CategoryAdapter(
         val cardView = holder.itemView as com.google.android.material.card.MaterialCardView
 
         if (position == selectedPosition) {
-            cardView.setCardBackgroundColor("#5EE6A9".toColorInt()) // light green
+            cardView.setCardBackgroundColor("#5EE6A9".toColorInt()) 
             holder.text.setTextColor("#FFFFFF".toColorInt())
         } else {
 
