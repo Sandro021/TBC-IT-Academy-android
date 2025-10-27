@@ -42,7 +42,7 @@ class DisplayAddressesFragment :
             androidx.recyclerview.widget.LinearLayoutManager(requireContext())
         binding.rvAddresses.adapter = adapter
         viewModel.addresses.observe(viewLifecycleOwner) {
-            android.util.Log.d("DEBUG_TAG", "Observed addresses: $it")
+            
             adapter.submitList(it)
         }
 
