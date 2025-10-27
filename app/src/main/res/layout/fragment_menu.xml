@@ -1,0 +1,44 @@
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/rgRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+
+    <RadioButton
+        android:id="@+id/btn3x3"
+        android:text="@string/_3_x_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioButton
+        android:id="@+id/btn4x4"
+        android:text="@string/_4_x_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioButton
+        android:id="@+id/btn5x5"
+        android:text="@string/_5_x_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/start_game"
+        android:textSize="30sp"
+        android:background="@color/purple_500"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
