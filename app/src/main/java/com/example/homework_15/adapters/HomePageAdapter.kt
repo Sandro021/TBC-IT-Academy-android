@@ -12,7 +12,7 @@ class HomePageAdapter(
 ) : FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment {
-        Log.d("HomePageAdapter", "Creating OrdersListFragment for ${statuses[position]}")
+       
         return OrdersListFragment(statuses[position])
     }
 
