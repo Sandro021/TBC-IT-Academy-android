@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:orientation="vertical"
+    android:gravity="end">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRightMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_right"
+        android:text="@string/sample_text"
+        android:textColor="#000"
+        android:padding="10dp"
+        android:textSize="16sp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sample_text"
+        android:layout_marginEnd="15dp"
+        android:textSize="10sp"
+        android:layout_marginTop="4dp"
+        android:textColor="#B1B5C3"
+        tools:ignore="SmallSp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
