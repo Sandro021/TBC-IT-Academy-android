@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/mastercard"
+        android:padding="20dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.1"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_card_holder_label"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="4364 1345 8932 8378" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_card_holder_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardholder_name"
+            android:textColor="#CCFFFFFF"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_card_holder_name"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_card_holder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/sune_pam" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_valid_thru_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/valid_thru"
+            android:textColor="#CCFFFFFF"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_valid_thru"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="SmallSp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_valid_thru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/_05_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

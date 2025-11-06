@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Homework_17</string>
+    <string name="add_new_card">Add new card</string>
+    <string name="payment">Payment</string>
+    <string name="card_management">Card Management</string>
+    <string name="add_new">Add new+</string>
+    <string name="cardholder_name">CARDHOLDER NAME</string>
+    <string name="sune_pam">Sune Pam</string>
+    <string name="valid_thru">VALID THRU</string>
+    <string name="_05_24">05/24</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="visa">Visa</string>
+    <string name="mastercard">Mastercard</string>
+    <string name="cardholder_name_add">Cardholder Name</string>
+    <string name="put_name_for_your_card">Put name for your card</string>
+    <string name="card_number">Card Number</string>
+    <string name="_5412363272837284">5412363272837284</string>
+    <string name="expires">Expires</string>
+    <string name="cvv">CVV</string>
+    <string name="_03_23">03/23</string>
+    <string name="_999">999</string>
+    <string name="add_card">Add card</string>
+    <string name="please_fill_name_field">Please fill name field</string>
+    <string name="please_put_16_digits">Please put 16 digits</string>
+    <string name="please_enter_date_like_in_the_hint">Please enter date like in the hint</string>
+    <string name="please_put_3_numbers">Please put 3 numbers</string>
+    <string name="please_choose_card_type">Please choose card type</string>
+</resources>
