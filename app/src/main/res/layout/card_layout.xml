@@ -11,7 +11,7 @@
         android:id="@+id/card_background"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/mastercard"
+        android:background="@drawable/visa"
         android:padding="20dp">
 
 
@@ -22,10 +22,11 @@
             android:fontFamily="monospace"
             android:letterSpacing="0.1"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="15sp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_card_holder_label"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="4364 1345 8932 8378" />
+            tools:text="@string/_4364_1345_8932_8378" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_card_holder_label"

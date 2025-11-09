@@ -9,7 +9,9 @@ import com.example.homework_17.R
 import com.example.homework_17.databinding.CardLayoutBinding
 import com.example.homework_17.model.CardInfo
 
-class CardPagerAdapter :
+class CardPagerAdapter(
+    private val onLongClick: (CardInfo) -> Unit
+) :
     ListAdapter<CardInfo, CardPagerAdapter.CardViewHolder>(CardDiffCallback()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,7 +31,7 @@ class CardPagerAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(card: CardInfo) = with(binding) {
             tvCardHolderName.text = card.cardHolderName
-            tvCardNumber.text = card.cardNumber.chunked(4).joinToString {" "}
+            tvCardNumber.text = card.cardNumber.chunked(4).joinToString(" ")
             tvValidThru.text = card.validThru
 
             when (card.cardType.uppercase()) {
@@ -37,6 +39,10 @@ class CardPagerAdapter :
                 else -> {
                     cardBackground.setBackgroundResource(R.drawable.mastercard)
                 }
+            }
+            root.setOnLongClickListener {
+                onLongClick(card)
+                true
             }
         }
 

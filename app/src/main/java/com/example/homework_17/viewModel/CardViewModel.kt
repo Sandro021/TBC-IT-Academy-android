@@ -29,4 +29,11 @@ class CardViewModel(app: Application) : AndroidViewModel(app) {
             repo.saveCards(updated)
         }
     }
+    fun deleteCard(card: CardInfo) {
+        viewModelScope.launch {
+            val updated = _cards.value.toMutableList().apply { remove(card) }
+            _cards.value = updated
+            repo.saveCards(updated)
+        }
+    }
 }

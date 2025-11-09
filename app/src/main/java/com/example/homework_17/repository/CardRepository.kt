@@ -33,7 +33,6 @@ class CardRepository(private val context: Context) {
                 emptyList()
             }
         } else {
-
             return try {
                 val json = file.readText()
                 Json.decodeFromString(json)
