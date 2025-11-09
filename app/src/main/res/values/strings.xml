@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Exam-4-recrete</string>
+    <string name="hint">Hint</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Register</string>
+    <string name="please_fill_in_the_fields">Please fill in the fields</string>
+</resources>
