@@ -1,15 +1,50 @@
 package com.example.homework_18.screen
 
+
+import android.util.Log
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.homework_18.common.BaseFragment
 import com.example.homework_18.databinding.FragmentLoginBinding
+import kotlin.getValue
+import com.example.homework_18.viewmodel.AuthViewModel
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+
+    private val viewModel: AuthViewModel by activityViewModels()
+
     override fun bind() {
-        TODO("Not yet implemented")
+        setUp()
     }
 
     override fun listeners() {
-        TODO("Not yet implemented")
+
     }
+
+    private fun setUp() = with(binding) {
+
+
+        btLogin.setOnClickListener {
+            val email = etEmail.text.toString()
+            val password = etPassword.text.toString()
+
+            viewModel.login(email, password)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.status.collect { message ->
+                    if (message.isNotEmpty()) {
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
+        }
+    }
+
 }
