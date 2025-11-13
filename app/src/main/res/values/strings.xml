@@ -8,4 +8,9 @@
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="logged_in">Logged in</string>
+    <string name="test_user">Test User</string>
+    <string name="user">User: </string>
+    <string name="log_out">Log out</string>
+    <string name="delete_user">Delete user</string>
 </resources>

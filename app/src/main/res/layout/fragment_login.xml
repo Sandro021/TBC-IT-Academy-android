@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screen.LoginFragment">
+    tools:context=".presentation.presentation.screen.LoginFragment">
 
 
     <androidx.appcompat.widget.AppCompatTextView

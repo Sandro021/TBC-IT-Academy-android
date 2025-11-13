@@ -1,4 +1,4 @@
-package com.example.homework_18.common
+package com.example.homework_18.presentation.presentation.common
 
 import android.os.Bundle
 import android.view.LayoutInflater

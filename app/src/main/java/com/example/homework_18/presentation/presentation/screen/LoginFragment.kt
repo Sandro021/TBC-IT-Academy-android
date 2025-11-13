@@ -1,18 +1,14 @@
-package com.example.homework_18.screen
+package com.example.homework_18.presentation.presentation.screen
 
-
-import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.homework_18.common.BaseFragment
+import com.example.homework_18.presentation.presentation.common.BaseFragment
 import com.example.homework_18.databinding.FragmentLoginBinding
-import kotlin.getValue
-import com.example.homework_18.viewmodel.AuthViewModel
+import com.example.homework_18.presentation.presentation.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
-
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 

@@ -1,6 +1,5 @@
-package com.example.homework_18.screen
+package com.example.homework_18.presentation.presentation.screen
 
-import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -8,11 +7,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.homework_18.R
-import com.example.homework_18.common.BaseFragment
+import com.example.homework_18.presentation.presentation.common.BaseFragment
 import com.example.homework_18.databinding.FragmentRegisterBinding
-import com.example.homework_18.viewmodel.AuthViewModel
+import com.example.homework_18.presentation.presentation.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
-
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
     private val viewModel: AuthViewModel by activityViewModels()
@@ -29,8 +27,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         btRegister.setOnClickListener {
             val emailInput = etEmail.text.toString()
             val passwordInput = etPassword.text.toString()
-            viewModel.register(emailInput, passwordInput)
-            findNavController().navigate(R.id.action_registerFragment_to_welcomeFragment)
+            val userName : String = etUsername.text.toString()
+            viewModel.register(emailInput, passwordInput,userName)
+            findNavController().navigate(R.id.action_registerFragment_to_loggedInFragment)
         }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
