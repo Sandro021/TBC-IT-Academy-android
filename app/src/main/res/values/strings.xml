@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Homework-20</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="profile">Profile</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="your_email">Your email</string>
+    <string name="login_first_to_show_email">Login first to show email</string>
+    <string name="log_out">Log out</string>
+    <string name="users">Users</string>
+    <string name="sample_name">Sample name</string>
+    <string name="example_email_address">example email address</string>
+</resources>
