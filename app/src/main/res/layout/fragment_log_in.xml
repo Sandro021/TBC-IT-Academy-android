@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".presentation.common.screen.LogInFragment">
+    tools:context=".presentation.common.screen.login.LogInFragment">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etEmail"

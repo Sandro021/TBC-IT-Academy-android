@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.homework_20.presentation.common.screen.WelcomeFragment"
+        android:name="com.example.homework_20.presentation.common.screen.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.homework_20.presentation.common.screen.LogInFragment"
+        android:name="com.example.homework_20.presentation.common.screen.login.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.homework_20.presentation.common.screen.RegisterFragment"
+        android:name="com.example.homework_20.presentation.common.screen.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.homework_20.presentation.common.screen.HomeFragment"
+        android:name="com.example.homework_20.presentation.common.screen.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.homework_20.presentation.common.screen.ProfileFragment"
+        android:name="com.example.homework_20.presentation.common.screen.profie.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
