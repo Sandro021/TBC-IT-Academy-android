@@ -2,16 +2,25 @@ package com.example.homework_20.presentation.common.screen.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.homework_20.data.common.ResultWrapper
 import com.example.homework_20.data.dto.LoginRequestDto
-import com.example.homework_20.data.network.RetrofitInstance
+import com.example.homework_20.data.network.AuthApi
+import com.example.homework_20.data.network.AuthRepository
+import com.example.homework_20.data.network.NetworkModule
 import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val sessionRepository: SessionRepository) : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val sessionRepository: SessionRepository,
+    private val authRepository: AuthRepository
+) : ViewModel() {
     private val _state = MutableStateFlow(LoginState())
     val state = _state.asStateFlow()
 
@@ -48,9 +57,8 @@ class LoginViewModel(private val sessionRepository: SessionRepository) : ViewMod
 
     private fun login(email: String, password: String, rememberMe: Boolean) {
         viewModelScope.launch {
-            try {
-                val response = RetrofitInstance.api.login(LoginRequestDto(email, password))
-                if (response.isSuccessful) {
+            when (val result = authRepository.login(email, password)) {
+                is ResultWrapper.Success -> {
                     updateState { it.copy(email = email) }
                     if (rememberMe) {
                         sessionRepository.saveEmail(email)
@@ -58,11 +66,11 @@ class LoginViewModel(private val sessionRepository: SessionRepository) : ViewMod
                         sessionRepository.clearSession()
                     }
                     _effect.emit(LoginEffect.NavigateToHome)
-                } else {
-                    _effect.emit(LoginEffect.ShowToast("Login failed"))
                 }
-            } catch (e: Exception) {
-                _effect.emit(LoginEffect.ShowToast("Error: ${e.message}"))
+
+                is ResultWrapper.Error -> {
+                    _effect.emit(LoginEffect.ShowToast(result.message))
+                }
             }
         }
     }

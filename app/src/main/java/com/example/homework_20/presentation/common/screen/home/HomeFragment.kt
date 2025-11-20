@@ -1,5 +1,6 @@
 package com.example.homework_20.presentation.common.screen.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -10,9 +11,11 @@ import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentHomeBinding
 import com.example.homework_20.presentation.common.adapter.UsersAdapter
 import com.example.homework_20.presentation.common.common.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val adapter = UsersAdapter()
 

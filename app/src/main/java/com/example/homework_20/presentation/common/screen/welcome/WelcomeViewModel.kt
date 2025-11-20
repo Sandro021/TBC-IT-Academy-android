@@ -3,11 +3,16 @@ package com.example.homework_20.presentation.common.screen.welcome
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WelcomeViewModel(private val sessionRepository: SessionRepository) : ViewModel() {
+@HiltViewModel
+class WelcomeViewModel @Inject constructor
+    (private val sessionRepository: SessionRepository) :
+    ViewModel() {
 
 
     private val _effect = MutableSharedFlow<WelcomeEffect>()

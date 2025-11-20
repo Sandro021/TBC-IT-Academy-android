@@ -3,15 +3,20 @@ package com.example.homework_20.presentation.common.screen.register
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.homework_20.data.dto.LoginRequestDto
-import com.example.homework_20.data.network.RetrofitInstance
+import com.example.homework_20.data.common.ResultWrapper
+import com.example.homework_20.data.network.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor(
+    private val authRepository: AuthRepository
+) : ViewModel() {
     private val _state = MutableStateFlow(RegisterState())
     val state = _state.asStateFlow()
 
@@ -64,17 +69,15 @@ class RegisterViewModel : ViewModel() {
                 _effect.emit(RegisterEffect.ShowToast("Passwords do not match"))
                 return@launch
             }
-
-            try {
-                val response = RetrofitInstance.api.register(LoginRequestDto(email, password))
-                if (response.isSuccessful) {
+            when (val result = authRepository.register(email, password)) {
+                is ResultWrapper.Success -> {
                     _effect.emit(RegisterEffect.ShowToast("Registered successfully"))
-                    _effect.emit(RegisterEffect.NavigateToLoginWithData(email , password))
-                } else {
-                    _effect.emit(RegisterEffect.ShowToast("Registration failed"))
+                    _effect.emit(RegisterEffect.NavigateToLoginWithData(email, password))
                 }
-            } catch (e: Exception) {
-                _effect.emit(RegisterEffect.ShowToast("Error: ${e.message}"))
+
+                is ResultWrapper.Error -> {
+                    _effect.emit(RegisterEffect.ShowToast(result.message))
+                }
             }
         }
     }

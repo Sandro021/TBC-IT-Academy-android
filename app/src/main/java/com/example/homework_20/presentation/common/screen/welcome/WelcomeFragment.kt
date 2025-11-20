@@ -6,16 +6,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentWelcomeBinding
 import com.example.homework_20.presentation.common.common.BaseFragment
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
-    private val viewModel: WelcomeViewModel by viewModels {
-        WelcomeViewModelFactory(
-            SessionRepository(requireContext())
-        )
-    }
+    private val viewModel: WelcomeViewModel by viewModels()
 
     override fun bind() {
         observeEffects()

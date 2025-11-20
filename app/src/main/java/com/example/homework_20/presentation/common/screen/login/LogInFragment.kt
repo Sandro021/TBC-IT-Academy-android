@@ -9,15 +9,15 @@ import androidx.navigation.fragment.findNavController
 import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentLogInBinding
 import com.example.homework_20.presentation.common.common.BaseFragment
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LogInFragment : BaseFragment<FragmentLogInBinding>(FragmentLogInBinding::inflate) {
 
-    private val viewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(SessionRepository(requireContext()))
-    }
+    private val viewModel: LoginViewModel by viewModels()
+
 
     override fun bind() {
         setupFragmentResultListener()

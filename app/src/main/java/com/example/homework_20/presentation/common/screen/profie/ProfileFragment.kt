@@ -1,19 +1,20 @@
 package com.example.homework_20.presentation.common.screen.profie
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentProfileBinding
 import com.example.homework_20.presentation.common.common.BaseFragment
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
-    private val viewModel: ProfileViewModel by viewModels {
-        ProfileViewModelFactory(SessionRepository(requireContext()))
-    }
+    private val viewModel: ProfileViewModel by viewModels()
+
 
     override fun bind() {
         setupFragmentResultListener()
@@ -24,6 +25,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     private fun observeState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
+
+                Log.d("TEST", "State email: ${state.email}")
+                binding.tvEmail.text = state.email?.ifEmpty { "No email" }
+
                 if (state.isLoggedOut) {
                     findNavController().navigate(R.id.action_profileFragment_to_logInFragment)
                 }
@@ -36,9 +41,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
             "profile_data",
             viewLifecycleOwner
         ) { _, bundle ->
-            val email = bundle.getString("email").orEmpty()
-            binding.tvEmail.text = email
-            viewModel.processIntent(ProfileIntent.LoadProfile(email))
+            val passedEmail = bundle.getString("email").orEmpty()
+            binding.tvEmail.text = passedEmail
+            viewModel.processIntent(ProfileIntent.LoadProfile(passedEmail))
         }
     }
 
@@ -47,6 +52,5 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
             viewModel.processIntent(ProfileIntent.Logout)
         }
     }
-
 
 }

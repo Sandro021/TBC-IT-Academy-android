@@ -2,10 +2,14 @@ package com.example.homework_20.presentation.common.screen.profie
 
 import androidx.lifecycle.ViewModel
 import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class ProfileViewModel(private val sessionRepository: SessionRepository) : ViewModel() {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(private val sessionRepository: SessionRepository) :
+    ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state.asStateFlow()
 

@@ -2,18 +2,28 @@ package com.example.homework_20.presentation.common.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.homework_20.data.network.RetrofitInstance
+import com.example.homework_20.data.common.ResultWrapper
+import com.example.homework_20.data.network.UsersRepository
+import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val sessionRepository: SessionRepository,
+    private val usersRepository: UsersRepository
+) : ViewModel() {
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
     private val _effect = MutableSharedFlow<HomeEffect>()
     val effect = _effect.asSharedFlow()
+
+    fun getLoggedInEmail(): String? = sessionRepository.getEmail()
 
     fun processIntent(intent: HomeIntent) {
         when (intent) {
@@ -24,23 +34,17 @@ class HomeViewModel : ViewModel() {
 
     private fun loadUsers() {
         viewModelScope.launch {
-
             _state.value = _state.value.copy(isLoading = true, errorMessage = null)
-
-            try {
-                val response = RetrofitInstance.api.getUsers()
-                if (response.isSuccessful) {
+            when (val result = usersRepository.getUsers()) {
+                is ResultWrapper.Success -> {
                     _state.value = _state.value.copy(
-                        isLoading = false,
-                        users = response.body()?.data ?: emptyList()
+                        users = result.data
                     )
-                } else {
-                    _state.value = _state.value.copy(isLoading = false)
-                    _effect.emit(HomeEffect.ShowToast("Error loading users"))
                 }
-            } catch (e: Exception) {
-                _state.value = _state.value.copy(isLoading = false)
-                _effect.emit(HomeEffect.ShowToast("Error: ${e.message}"))
+
+                is ResultWrapper.Error -> {
+                    _effect.emit(HomeEffect.ShowToast(result.message))
+                }
             }
         }
     }

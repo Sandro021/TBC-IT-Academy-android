@@ -1,6 +1,5 @@
 package com.example.homework_20.presentation.common.screen.register
 
-import android.util.Log
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -10,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentRegisterBinding
 import com.example.homework_20.presentation.common.common.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
     private val viewModel: RegisterViewModel by viewModels()
     override fun bind() {

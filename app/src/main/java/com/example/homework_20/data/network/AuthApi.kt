@@ -26,5 +26,8 @@ interface AuthApi {
     ): Response<RegisterResponseDto>
 
     @GET("api/users")
-    suspend fun getUsers(@Query("page") page: Int = 1): Response<UsersResponseDto>
+    suspend fun getUsers(
+        @Query("page") page: Int = 1,
+        @Header("x-api-key") apiKey: String = "reqres-free-v1"
+    ): Response<UsersResponseDto>
 }
