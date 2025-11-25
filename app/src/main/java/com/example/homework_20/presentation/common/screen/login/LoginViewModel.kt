@@ -3,10 +3,7 @@ package com.example.homework_20.presentation.common.screen.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homework_20.data.common.ResultWrapper
-import com.example.homework_20.data.dto.LoginRequestDto
-import com.example.homework_20.data.network.AuthApi
 import com.example.homework_20.data.network.AuthRepository
-import com.example.homework_20.data.network.NetworkModule
 import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject

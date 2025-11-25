@@ -84,6 +84,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:5.0.5")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
     implementation("com.google.dagger:hilt-android:2.57.2")
+    implementation("androidx.paging:paging-runtime:3.2.1")
     ksp("com.google.dagger:hilt-android-compiler:2.57.2")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
 }

@@ -1,6 +1,5 @@
 package com.example.homework_20.presentation.common.screen.home
 
-import android.util.Log
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -9,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework_20.R
 import com.example.homework_20.databinding.FragmentHomeBinding
-import com.example.homework_20.presentation.common.adapter.UsersAdapter
+import com.example.homework_20.presentation.common.adapter.UsersPagingAdapter
 import com.example.homework_20.presentation.common.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
-    private val adapter = UsersAdapter()
+    private val adapter = UsersPagingAdapter()
 
     private var loggedInEmail: String? = null
     private val viewModel: HomeViewModel by viewModels()
@@ -41,7 +40,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun setupUI() = with(binding) {
-
         rvUsers.layoutManager = LinearLayoutManager(requireContext())
         rvUsers.adapter = adapter
 
@@ -52,13 +50,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun observeState() {
-        lifecycleScope.launch {
-            viewModel.state.collect { state ->
-                adapter.submitList(state.users)
-
-                state.errorMessage?.let { message ->
-                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.usersFlow.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
             }
         }
     }
