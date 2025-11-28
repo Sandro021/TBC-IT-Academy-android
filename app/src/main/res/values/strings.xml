@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Homework-24</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome</string>
+    <string name="start">Start</string>
+    <string name="save">Save</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="read">Read</string>
+    <string name="example_name">Example name</string>
+    <string name="example_lastname">Example lastName</string>
+    <string name="exampleEmail_gmail_com">exampleEmail@gmail.com</string>
+</resources>
