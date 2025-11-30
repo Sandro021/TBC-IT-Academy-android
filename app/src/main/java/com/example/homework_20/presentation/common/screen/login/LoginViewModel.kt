@@ -2,9 +2,8 @@ package com.example.homework_20.presentation.common.screen.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.homework_20.data.common.ResultWrapper
-import com.example.homework_20.data.network.AuthRepository
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import com.example.homework_20.domain.usecase.LoginUseCase
+import com.example.homework_20.data.session.SessionRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,8 +14,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val sessionRepository: SessionRepository,
-    private val authRepository: AuthRepository
+    private val sessionRepositoryImpl: SessionRepositoryImpl,
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(LoginState())
     val state = _state.asStateFlow()
@@ -54,20 +53,16 @@ class LoginViewModel @Inject constructor(
 
     private fun login(email: String, password: String, rememberMe: Boolean) {
         viewModelScope.launch {
-            when (val result = authRepository.login(email, password)) {
-                is ResultWrapper.Success -> {
-                    updateState { it.copy(email = email) }
-                    if (rememberMe) {
-                        sessionRepository.saveEmail(email)
-                    } else {
-                        sessionRepository.clearSession()
-                    }
-                    _effect.emit(LoginEffect.NavigateToHome)
+            try {
+                loginUseCase(email, password)
+                if (rememberMe) {
+                    sessionRepositoryImpl.saveEmail(email)
+                } else {
+                    sessionRepositoryImpl.clearSession()
                 }
-
-                is ResultWrapper.Error -> {
-                    _effect.emit(LoginEffect.ShowToast(result.message))
-                }
+                _effect.emit(LoginEffect.NavigateToHome)
+            } catch (e: Exception) {
+                _effect.emit(LoginEffect.ShowToast(e.message ?: "Login failed"))
             }
         }
     }

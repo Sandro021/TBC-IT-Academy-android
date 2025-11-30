@@ -1,5 +1,6 @@
-package com.example.homework_20.data.network
+package com.example.homework_20.data.di
 
+import com.example.homework_20.data.network.AuthApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides

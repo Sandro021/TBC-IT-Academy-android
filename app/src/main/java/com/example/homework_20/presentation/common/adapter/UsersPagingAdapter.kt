@@ -7,10 +7,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.homework_20.data.dto.UserDto
 import com.example.homework_20.databinding.ItemUserBinding
+import com.example.homework_20.domain.model.User
 
-class UsersPagingAdapter : PagingDataAdapter<UserDto, UsersPagingAdapter.UserViewHolder>(DIFF) {
+class UsersPagingAdapter : PagingDataAdapter<User, UsersPagingAdapter.UserViewHolder>(DIFF) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -24,16 +24,16 @@ class UsersPagingAdapter : PagingDataAdapter<UserDto, UsersPagingAdapter.UserVie
     }
 
     companion object {
-        private val DIFF = object : DiffUtil.ItemCallback<UserDto>() {
+        private val DIFF = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(
-                oldItem: UserDto,
-                newItem: UserDto
+                oldItem: User,
+                newItem: User
             ): Boolean = oldItem.id == newItem.id
 
 
             override fun areContentsTheSame(
-                oldItem: UserDto,
-                newItem: UserDto
+                oldItem: User,
+                newItem: User
             ): Boolean = oldItem == newItem
 
         }
@@ -42,7 +42,7 @@ class UsersPagingAdapter : PagingDataAdapter<UserDto, UsersPagingAdapter.UserVie
     class UserViewHolder(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(user: UserDto?) = with(binding) {
+        fun bind(user: User?) = with(binding) {
             tvName.text = "${user?.firstName} ${user?.lastName}"
             tvEmail.text = user?.email
             Glide.with(ivAvatar).load(user?.avatar).into(ivAvatar)

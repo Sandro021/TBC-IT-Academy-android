@@ -1,14 +1,20 @@
 package com.example.homework_20.presentation.common.screen.profie
 
 import androidx.lifecycle.ViewModel
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import androidx.lifecycle.viewModelScope
+import com.example.homework_20.domain.usecase.ClearSessionUseCase
+import com.example.homework_20.domain.usecase.GetProfileEmailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val sessionRepository: SessionRepository) :
+class ProfileViewModel @Inject constructor(
+    private val clearSessionUseCase: ClearSessionUseCase,
+    private val getProfileEmailUseCase: GetProfileEmailUseCase
+) :
     ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state = _state.asStateFlow()
@@ -21,12 +27,18 @@ class ProfileViewModel @Inject constructor(private val sessionRepository: Sessio
     }
 
     private fun loadProfile(email: String) {
-        val finalEmail = email.ifEmpty { sessionRepository.getEmail().orEmpty() }
-        _state.value = _state.value.copy(email = finalEmail)
+        viewModelScope.launch {
+            val finalEmail = getProfileEmailUseCase(email)
+            _state.value = _state.value.copy(email = finalEmail)
+        }
+
     }
 
     private fun logOut() {
-        sessionRepository.clearSession()
-        _state.value = ProfileState(isLoggedOut = true)
+        viewModelScope.launch {
+            clearSessionUseCase()
+            _state.value = ProfileState(isLoggedOut = true)
+        }
+
     }
 }

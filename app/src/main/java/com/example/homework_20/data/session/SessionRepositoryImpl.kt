@@ -1,28 +1,30 @@
-package com.example.homework_20.presentation.common.screen.sessionRepository
+package com.example.homework_20.data.session
 
 import android.content.Context
 import androidx.core.content.edit
+import com.example.homework_20.domain.repository.SessionRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SessionRepository @Inject constructor(@ApplicationContext context: Context) {
+class SessionRepositoryImpl @Inject constructor(@ApplicationContext context: Context) :
+    SessionRepository {
     private val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 
-    fun saveEmail(email: String) {
+    override suspend fun saveEmail(email: String) {
         prefs.edit { putString("email", email) }
     }
 
-    fun getEmail(): String? {
+   override suspend fun getEmail(): String? {
         return prefs.getString("email", null)
     }
 
-    fun isLoggedIn(): Boolean {
+    override suspend fun isLoggedIn(): Boolean {
         return getEmail() != null
     }
 
-    fun clearSession() {
+    override suspend fun clearSession() {
         prefs.edit { clear() }
     }
 }

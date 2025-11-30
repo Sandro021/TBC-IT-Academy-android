@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.homework_20.data.common.ResultWrapper
-import com.example.homework_20.data.dto.UserDto
-import com.example.homework_20.data.network.UsersRepository
-import com.example.homework_20.data.repository.UsersPagingRepository
+import com.example.homework_20.data.repository.UsersPagingRepositoryImpl
+import com.example.homework_20.domain.model.User
+import com.example.homework_20.domain.usecase.GetUsersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,9 +17,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    repository: UsersPagingRepository,
+    repository: UsersPagingRepositoryImpl,
+    private val getUsersUseCase: GetUsersUseCase
 
-    private val usersRepository: UsersRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeState())
 
@@ -37,16 +36,18 @@ class HomeViewModel @Inject constructor(
     private fun loadUsers() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, errorMessage = null)
-            when (val result = usersRepository.getUsers()) {
-                is ResultWrapper.Success -> {
-                    _state.value = _state.value.copy(
-                        users = result.data
-                    )
-                }
-
-                is ResultWrapper.Error -> {
-                    _effect.emit(HomeEffect.ShowToast(result.message))
-                }
+            try {
+                val users = getUsersUseCase()
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    users = users
+                )
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(
+                    isLoading = false,
+                    errorMessage = e.message
+                )
+                _effect.emit(HomeEffect.ShowToast(e.message ?: "Failed to load users"))
             }
         }
     }
@@ -57,6 +58,6 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    val usersFlow: Flow<PagingData<UserDto>> = repository.getUsersPaging().cachedIn(viewModelScope)
+    val usersFlow: Flow<PagingData<User>> = repository.getUsersPaging().cachedIn(viewModelScope)
 
 }

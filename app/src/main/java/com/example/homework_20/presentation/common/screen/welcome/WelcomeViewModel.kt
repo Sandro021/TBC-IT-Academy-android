@@ -2,7 +2,7 @@ package com.example.homework_20.presentation.common.screen.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.homework_20.presentation.common.screen.sessionRepository.SessionRepository
+import com.example.homework_20.domain.usecase.IsUserLoggedInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -10,8 +10,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WelcomeViewModel @Inject constructor
-    (private val sessionRepository: SessionRepository) :
+class WelcomeViewModel @Inject constructor(
+    private val isUserLoggedInUseCase: IsUserLoggedInUseCase
+) :
     ViewModel() {
 
 
@@ -27,8 +28,9 @@ class WelcomeViewModel @Inject constructor
     }
 
     private fun checkSession() {
-        if (sessionRepository.isLoggedIn()) {
-            viewModelScope.launch {
+        viewModelScope.launch {
+            val isLoggedIn = isUserLoggedInUseCase()
+            if (isLoggedIn) {
                 _effect.emit(WelcomeEffect.NavigateToHome)
             }
         }

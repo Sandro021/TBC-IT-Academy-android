@@ -1,10 +1,8 @@
 package com.example.homework_20.presentation.common.screen.register
 
-import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.homework_20.data.common.ResultWrapper
-import com.example.homework_20.data.network.AuthRepository
+import com.example.homework_20.domain.usecase.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val registerUseCase: RegisterUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(RegisterState())
     val state = _state.asStateFlow()
@@ -28,21 +26,33 @@ class RegisterViewModel @Inject constructor(
             is RegisterIntent.EmailChanged -> updateState {
                 it.copy(
                     email = intent.email,
-                    isRegisterEnabled = validateInput(intent.email, it.password, it.repeatPassword)
+                    isRegisterEnabled = shouldEnableRegisterButton(
+                        intent.email,
+                        it.password,
+                        it.repeatPassword
+                    )
                 )
             }
 
             is RegisterIntent.PasswordChanged -> updateState {
                 it.copy(
                     password = intent.password,
-                    isRegisterEnabled = validateInput(it.email, intent.password, it.repeatPassword)
+                    isRegisterEnabled = shouldEnableRegisterButton(
+                        it.email,
+                        intent.password,
+                        it.repeatPassword
+                    )
                 )
             }
 
             is RegisterIntent.RepeatPasswordChanged -> updateState {
                 it.copy(
                     repeatPassword = intent.repeatPassword,
-                    isRegisterEnabled = validateInput(it.email, it.password, intent.repeatPassword)
+                    isRegisterEnabled = shouldEnableRegisterButton(
+                        it.email,
+                        it.password,
+                        intent.repeatPassword
+                    )
                 )
             }
 
@@ -55,29 +65,29 @@ class RegisterViewModel @Inject constructor(
     }
 
 
-    private fun validateInput(email: String, password: String, repeatPassword: String): Boolean {
-        val isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        val isPasswordValid = password.isNotEmpty()
-        val passwordMatch = password == repeatPassword
+    private fun shouldEnableRegisterButton(
+        email: String,
+        password: String,
+        repeatPassword: String
+    ): Boolean {
+        val isEmailNotBlank = email.isNotBlank()
+        val isPasswordNotBlank = password.isNotBlank()
+        val passwordsMatch = password == repeatPassword
 
-        return isEmailValid && isPasswordValid && passwordMatch
+        return isEmailNotBlank && isPasswordNotBlank && passwordsMatch
     }
 
     private fun register(email: String, password: String, repeatPassword: String) {
         viewModelScope.launch {
-            if (password != repeatPassword) {
-                _effect.emit(RegisterEffect.ShowToast("Passwords do not match"))
-                return@launch
-            }
-            when (val result = authRepository.register(email, password)) {
-                is ResultWrapper.Success -> {
-                    _effect.emit(RegisterEffect.ShowToast("Registered successfully"))
-                    _effect.emit(RegisterEffect.NavigateToLoginWithData(email, password))
-                }
+            try {
+                registerUseCase(email, password, repeatPassword)
 
-                is ResultWrapper.Error -> {
-                    _effect.emit(RegisterEffect.ShowToast(result.message))
-                }
+                _effect.emit(RegisterEffect.ShowToast("Registered successfully"))
+                _effect.emit(RegisterEffect.NavigateToLoginWithData(email, password))
+            } catch (e: IllegalArgumentException) {
+                _effect.emit(RegisterEffect.ShowToast(e.message ?: "Invalid input"))
+            } catch (e: Exception) {
+                _effect.emit(RegisterEffect.ShowToast("Register failed: ${e.message}"))
             }
         }
     }
