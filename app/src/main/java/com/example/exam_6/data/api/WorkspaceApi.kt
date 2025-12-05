@@ -1,6 +1,6 @@
 package com.example.exam_6.data.api
 
-import com.example.exam_6.data.WorkspaceDto
+import com.example.exam_6.data.dto.WorkspaceDto
 import retrofit2.http.GET
 
 interface WorkspaceApi {

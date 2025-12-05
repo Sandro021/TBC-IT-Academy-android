@@ -1,4 +1,4 @@
-package com.example.exam_6.presentation
+package com.example.exam_6.presentation.screen
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
