@@ -1,10 +1,10 @@
-package com.example.gymtracker.presentation
+package com.example.gymtracker.presentation.screen.login
 
-data class RegisterState(
+data class LoginState(
     val email: String = "",
     val password: String = "",
-    val repeatPassword: String = "",
     val isLoading: Boolean = false,
+    val rememberMe: Boolean = false,
     val errorMessage: String? = null,
     val navigateToHome: Boolean = false
 )

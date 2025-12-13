@@ -1,4 +1,4 @@
-package com.example.gymtracker.presentation
+package com.example.gymtracker.presentation.screen.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

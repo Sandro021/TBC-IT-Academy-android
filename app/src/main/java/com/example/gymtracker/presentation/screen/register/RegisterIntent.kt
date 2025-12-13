@@ -1,4 +1,4 @@
-package com.example.gymtracker.presentation
+package com.example.gymtracker.presentation.screen.register
 
 sealed class RegisterIntent {
     data class EmailChanged(val value: String) : RegisterIntent()

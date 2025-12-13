@@ -1,5 +1,4 @@
-package com.example.gymtracker.presentation
-
+package com.example.gymtracker.presentation.screen.login
 
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
@@ -9,14 +8,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.gymtracker.R
-import com.example.gymtracker.databinding.FragmentRegisterBinding
+import com.example.gymtracker.databinding.FragmentLoginBinding
 import com.example.gymtracker.presentation.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::inflate) {
-    private val viewModel: RegisterViewModel by viewModels()
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
+
+    private val viewModel: LoginViewModel by viewModels()
+
     override fun bind() {
 
     }
@@ -27,16 +28,17 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
 
     private fun setUpListeners() = with(binding) {
         etEmail.addTextChangedListener {
-            viewModel.processIntent(RegisterIntent.EmailChanged(it.toString()))
+            viewModel.processIntent(LoginIntent.EmailChanged(it.toString()))
         }
         etPassword.addTextChangedListener {
-            viewModel.processIntent(RegisterIntent.PasswordChanged(it.toString()))
+            viewModel.processIntent(LoginIntent.PasswordChanged(it.toString()))
         }
-        etRepeatPassword.addTextChangedListener {
-            viewModel.processIntent(RegisterIntent.RepeatPasswordChanged(it.toString()))
+
+        btLogin.setOnClickListener {
+            viewModel.processIntent(LoginIntent.ClickLogin)
         }
-        btRegister.setOnClickListener {
-            viewModel.processIntent(RegisterIntent.ClickRegister)
+        rbRemember.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.processIntent(LoginIntent.RememberMeChanged(isChecked))
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -48,17 +50,16 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         }
     }
 
-    private fun render(state: RegisterState) {
-        binding.btRegister.isEnabled = !state.isLoading
+    private fun render(state: LoginState) {
+        binding.btLogin.isEnabled = !state.isLoading
 
         state.errorMessage?.let {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-
         }
 
         if (state.navigateToHome) {
-            findNavController().navigate(R.id.action_registerFragment_to_userFragment)
-            viewModel.processIntent(RegisterIntent.NavigationHandled)
+            findNavController().navigate(R.id.action_loginFragment2_to_userFragment)
+            viewModel.processIntent(LoginIntent.NavigationHandled)
         }
     }
 
