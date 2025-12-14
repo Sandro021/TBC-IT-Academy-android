@@ -12,4 +12,7 @@
     <string name="exercise_name">Exercise name</string>
     <string name="new_exercise">New exercise</string>
     <string name="search">Search</string>
+    <string name="today">Today</string>
+    <string name="add_exercises_or_workout_program_to_start_logging_your_activity">Add exercises or workout program to start logging your activity</string>
+    <string name="add_exercises">Add exercises</string>
 </resources>

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment2"
@@ -26,8 +29,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment2_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_loginFragment2_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -35,12 +38,20 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_registerFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_registerFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.gymtracker.presentation.screen.exercises.ExercisesFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_exercises" />
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="com.example.gymtracker.presentation.screen.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment2_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
 </navigation>

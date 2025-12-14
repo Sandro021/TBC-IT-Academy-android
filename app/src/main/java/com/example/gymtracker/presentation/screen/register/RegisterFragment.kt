@@ -59,7 +59,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         }
 
         if (state.navigateToHome) {
-            findNavController().navigate(R.id.action_registerFragment_to_userFragment)
+            findNavController().navigate(R.id.action_registerFragment_to_homeFragment2)
             viewModel.processIntent(RegisterIntent.NavigationHandled)
         }
     }

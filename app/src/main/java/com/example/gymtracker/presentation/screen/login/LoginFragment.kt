@@ -58,7 +58,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
 
         if (state.navigateToHome) {
-            findNavController().navigate(R.id.action_loginFragment2_to_userFragment)
+            findNavController().navigate(R.id.action_loginFragment2_to_homeFragment2)
             viewModel.processIntent(LoginIntent.NavigationHandled)
         }
     }
