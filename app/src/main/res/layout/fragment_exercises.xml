@@ -10,13 +10,13 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@android:drawable/edit_text"
-        android:hint="Search"
+        android:hint="@string/search"
         android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNewExercise"
         android:layout_width="0dp"
         android:layout_height="56dp"
@@ -24,7 +24,7 @@
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
-        android:text="New exercise"
+        android:text="@string/new_exercise"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

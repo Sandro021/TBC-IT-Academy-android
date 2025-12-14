@@ -1,5 +1,6 @@
 package com.example.gymtracker.data.firestore
 
+import android.util.Log
 import com.example.gymtracker.domain.model.ExerciseGroup
 import com.example.gymtracker.domain.repository.ExerciseGroupRepository
 import com.google.firebase.auth.FirebaseAuth
@@ -55,6 +56,8 @@ class ExerciseGroupRepositoryImpl @Inject constructor(
 
         var reg: ListenerRegistration? = null
         reg = ref.addSnapshotListener { snap, err ->
+            val chest = snap?.documents?.firstOrNull { it.id == "chest" }?.data
+            Log.d("GROUPS", "Chest doc = $chest")
             if (err != null) {
                 close(err)
                 return@addSnapshotListener
@@ -64,8 +67,8 @@ class ExerciseGroupRepositoryImpl @Inject constructor(
                     id = doc.id,
                     title = doc.getString("title").orEmpty(),
                     icon = doc.getString("icon").orEmpty(),
-                    orderIndex = (doc.getLong("orderIndex") ?: 0L).toInt(),
-                    exerciseCount = (doc.getLong("exerciseCount") ?: 0L).toInt()
+                    orderIndex = (doc.get("orderIndex") as? Number)?.toInt() ?: 0,
+                    exerciseCount = (doc.get("exerciseCount") as? Number)?.toInt() ?: 0
                 )
             }.sortedBy { it.orderIndex }
 

@@ -1,6 +1,6 @@
 package com.example.gymtracker.di
 
-import com.example.gymtracker.data.FirebaseAuthRepositoryImpl
+import com.example.gymtracker.data.repository.FirebaseAuthRepositoryImpl
 import com.example.gymtracker.domain.repository.AuthRepository
 import com.example.gymtracker.domain.repository.ExerciseGroupRepository
 import com.example.gymtracker.domain.usecase.LoginUseCase

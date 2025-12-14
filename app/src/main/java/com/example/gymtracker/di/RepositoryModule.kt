@@ -1,7 +1,9 @@
 package com.example.gymtracker.di
 
 import com.example.gymtracker.data.firestore.ExerciseGroupRepositoryImpl
+import com.example.gymtracker.data.repository.ExerciseRepositoryImpl
 import com.example.gymtracker.domain.repository.ExerciseGroupRepository
+import com.example.gymtracker.domain.repository.ExerciseRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,4 +20,11 @@ abstract class RepositoryModule {
     abstract fun bindExerciseGroupRepository(
         impl: ExerciseGroupRepositoryImpl
     ): ExerciseGroupRepository
+
+
+    @Binds
+    @Singleton
+    abstract fun bindExerciseRepository(
+        impl: ExerciseRepositoryImpl
+    ): ExerciseRepository
 }

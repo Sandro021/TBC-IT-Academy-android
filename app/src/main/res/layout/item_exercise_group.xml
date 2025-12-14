@@ -41,7 +41,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:contentDescription="@null"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/arrow"
         app:layout_constraintBottom_toBottomOf="@id/imgIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/imgIcon" />

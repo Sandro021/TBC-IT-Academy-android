@@ -1,4 +1,4 @@
-package com.example.gymtracker.data
+package com.example.gymtracker.data.repository
 
 import com.example.gymtracker.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth

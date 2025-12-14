@@ -2,6 +2,7 @@ package com.example.gymtracker.presentation.screen.exercises
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.gymtracker.domain.usecase.CreateExerciseUseCase
 import com.example.gymtracker.domain.usecase.ObserveExerciseGroupUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExercisesViewModel @Inject constructor(
-    private val observeExerciseGroupUseCase: ObserveExerciseGroupUseCase
+    private val observeExerciseGroupUseCase: ObserveExerciseGroupUseCase,
+    private val createExerciseUseCase: CreateExerciseUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(ExercisesState())
     val state = _state.asStateFlow()
@@ -61,6 +63,19 @@ class ExercisesViewModel @Inject constructor(
 
             ExercisesIntent.NewExerciseClicked -> {
                 viewModelScope.launch { _effect.emit(ExercisesEffect.OpenNewExercise) }
+            }
+
+            is ExercisesIntent.SaveNewExercise -> saveExercise(intent)
+        }
+    }
+
+    private fun saveExercise(i: ExercisesIntent.SaveNewExercise) {
+        viewModelScope.launch {
+            createExerciseUseCase(i.name, i.groupId, i.groupTitle).onSuccess {
+                _effect.emit(ExercisesEffect.CloseNewExerciseDialog)
+            }.onFailure { e ->
+                _effect.emit(ExercisesEffect.ShowMessage(e.message ?: "Failed to create exercise"))
+
             }
         }
     }
