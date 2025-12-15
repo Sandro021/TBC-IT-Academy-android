@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface ExerciseGroupRepository {
     suspend fun seedDefaultGroupsIfEmpty()
     fun observeGroups(): Flow<List<ExerciseGroup>>
+    suspend fun recomputeGroupCounts()
 }

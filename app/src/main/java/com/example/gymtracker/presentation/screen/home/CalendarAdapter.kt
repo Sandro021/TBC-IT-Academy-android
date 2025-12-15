@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gymtracker.databinding.ItemWeekDayBinding
 
-class WeekAdapter(
-    private val onClick: (WeekDayModel) -> Unit
-) : ListAdapter<WeekDayModel, WeekAdapter.ViewHolder>(Diff) {
+class CalendarAdapter(
+    private val onClick: (CalendarModel) -> Unit
+) : ListAdapter<CalendarModel, CalendarAdapter.ViewHolder>(Diff) {
 
-    object Diff : DiffUtil.ItemCallback<WeekDayModel>() {
-        override fun areItemsTheSame(oldItem: WeekDayModel, newItem: WeekDayModel) =
+    object Diff : DiffUtil.ItemCallback<CalendarModel>() {
+        override fun areItemsTheSame(oldItem: CalendarModel, newItem: CalendarModel) =
             oldItem.date == newItem.date
 
-        override fun areContentsTheSame(oldItem: WeekDayModel, newItem: WeekDayModel) =
+        override fun areContentsTheSame(oldItem: CalendarModel, newItem: CalendarModel) =
             oldItem == newItem
     }
 

@@ -45,7 +45,11 @@
         android:id="@+id/userFragment"
         android:name="com.example.gymtracker.presentation.screen.exercises.ExercisesFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_exercises" />
+        tools:layout="@layout/fragment_exercises" >
+        <action
+            android:id="@+id/action_userFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.example.gymtracker.presentation.screen.home.HomeFragment"

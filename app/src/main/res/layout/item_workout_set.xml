@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="6dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSetNumber"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etWeight"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:hint="kg"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@id/tvSetNumber"
+        app:layout_constraintEnd_toStartOf="@id/etReps"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.45"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etReps"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:hint="reps"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@id/etWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

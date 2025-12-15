@@ -4,5 +4,12 @@ import java.time.LocalDate
 
 data class TodayState(
     val selectedDate: LocalDate = LocalDate.now(),
-    val week: List<WeekDayModel> = emptyList()
+    val calendarDays: List<CalendarModel> = emptyList(),
+    val headerTitle: String = "Today",
+    val todayIndex: Int = 0,
+
+
+    val items: List<WorkoutItemModel> = emptyList(),
+    val isSaving: Boolean = false,
+    val errorMessage: String? = null
 )

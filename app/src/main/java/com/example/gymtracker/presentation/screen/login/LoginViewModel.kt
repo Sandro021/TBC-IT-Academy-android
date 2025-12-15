@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymtracker.domain.usecase.LoginUseCase
+import com.example.gymtracker.domain.usecase.RecomputeExerciseGroupCountsUseCase
 import com.example.gymtracker.domain.usecase.SeedExerciseGroupsUseCase
 import com.example.gymtracker.domain.usecase.SetRememberMeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val setRememberMeUseCase: SetRememberMeUseCase,
-    private val seedExerciseGroupsUseCase: SeedExerciseGroupsUseCase
+    private val seedExerciseGroupsUseCase: SeedExerciseGroupsUseCase,
+    private val recomputeExerciseGroupCountsUseCase: RecomputeExerciseGroupCountsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(LoginState())
     val state = _state.asStateFlow()
@@ -51,8 +53,8 @@ class LoginViewModel @Inject constructor(
             val result = loginUseCase(current.email, current.password)
 
             result.onSuccess {
-                Log.d("LOGIN", "Login SUCCESS")
                 seedExerciseGroupsUseCase()
+                recomputeExerciseGroupCountsUseCase()
                 setRememberMeUseCase(current.rememberMe)
                 _state.update {
                     it.copy(

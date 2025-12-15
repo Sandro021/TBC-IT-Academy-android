@@ -77,5 +77,36 @@ class ExerciseGroupRepositoryImpl @Inject constructor(
 
         awaitClose { reg.remove() }
     }
+
+    override suspend fun recomputeGroupCounts() {
+        val uid = auth.currentUser?.uid ?: error("User not logged in")
+
+        val userDoc = firestore.collection("users").document(uid)
+        val groupsRef = userDoc.collection("exerciseGroups")
+        val exercisesRef = userDoc.collection("exercises")
+
+        val groupsSnap = groupsRef.get().await()
+
+        firestore.runBatch { _ ->
+            for (groupDoc in groupsSnap.documents) {
+                val groupId = groupDoc.id
+
+
+            }
+        }.await()
+
+        for (groupDoc in groupsSnap.documents) {
+            val groupId = groupDoc.id
+            val countSnap = exercisesRef.whereEqualTo("groupId", groupId).get().await()
+            val count = countSnap.size()
+
+            groupsRef.document(groupId)
+                .set(
+                    mapOf("exerciseCount" to count),
+                    com.google.firebase.firestore.SetOptions.merge()
+                )
+                .await()
+        }
+    }
 }
 
