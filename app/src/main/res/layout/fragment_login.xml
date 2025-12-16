@@ -14,7 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/email"
+        android:padding="6dp"
         android:textSize="25sp" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -24,7 +26,9 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/password"
+        android:padding="6dp"
         android:textSize="25sp" />
 
     <RadioButton
@@ -33,16 +37,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:paddingHorizontal="20dp"
-        android:text="Remember me"
-        android:textSize="20dp" />
+        android:text="@string/remember_me"
+        android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@drawable/button_bg"
         android:paddingHorizontal="15dp"
         android:text="@string/login"
+        android:textColor="@color/white"
         android:textSize="25sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

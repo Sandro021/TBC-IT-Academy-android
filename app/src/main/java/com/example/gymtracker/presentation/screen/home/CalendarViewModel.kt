@@ -108,11 +108,19 @@ class CalendarViewModel @Inject constructor(
                         name = item.name,
                         sets = item.sets.map { s ->
                             WorkoutSetModel(
+                                exerciseId = item.exerciseId,
                                 number = s.number,
                                 weight = s.weight.toString(),
                                 reps = s.reps.toString()
                             )
-                        }.ifEmpty { listOf(WorkoutSetModel(number = 1)) }
+                        }.ifEmpty {
+                            listOf(
+                                WorkoutSetModel(
+                                    exerciseId = item.exerciseId,
+                                    number = 1
+                                )
+                            )
+                        }
                     )
                 }
                 _state.update { it.copy(items = uiItems, errorMessage = null) }
@@ -145,7 +153,10 @@ class CalendarViewModel @Inject constructor(
                     if (item.exerciseId == exerciseId) {
                         val nextNumber = item.sets.size + 1
                         item.copy(
-                            sets = item.sets + WorkoutSetModel(number = nextNumber)
+                            sets = item.sets + WorkoutSetModel(
+                                exerciseId = exerciseId,
+                                number = nextNumber
+                            )
                         )
                     } else item
                 }

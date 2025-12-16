@@ -9,11 +9,11 @@
         android:id="@+id/tvSetNumber"
         android:layout_width="24dp"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:text="@string/_1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etWeight"
@@ -21,21 +21,25 @@
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="8dp"
-        android:hint="kg"
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/kg"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@id/tvSetNumber"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@id/etReps"
+        app:layout_constraintStart_toEndOf="@id/tvSetNumber"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.45"/>
+        app:layout_constraintWidth_percent="0.45" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etReps"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:hint="reps"
+        android:background="@drawable/edit_text_bg"
+        android:hint="@string/reps"
         android:inputType="number"
-        app:layout_constraintStart_toEndOf="@id/etWeight"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/etWeight"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

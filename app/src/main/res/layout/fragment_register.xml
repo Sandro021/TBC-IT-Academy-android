@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:padding="6dp"
+        android:background="@drawable/edit_text_bg"
         android:layout_marginHorizontal="20dp"
         android:hint="@string/email"
         android:textSize="25sp" />
@@ -24,6 +26,8 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
+        android:padding="6dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/password"
         android:textSize="25sp" />
 
@@ -32,8 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/edit_text_bg"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
+        android:padding="6dp"
         android:hint="@string/repeat_password"
         android:textSize="25sp" />
 
@@ -43,6 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:paddingHorizontal="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_bg"
         android:text="@string/register"
         android:textSize="25sp" />
 

@@ -42,18 +42,16 @@ class WorkoutItemsAdapter(
             onAddSetClicked(item.exerciseId)
         }
 
-        // Nested RecyclerView for sets
         if (holder.setsAdapter == null) {
             holder.b.rvSets.layoutManager = LinearLayoutManager(holder.itemView.context)
+            holder.b.rvSets.itemAnimator = null // ✅ reduce focus/cursor glitches in nested RV
+            holder.b.rvSets.setHasFixedSize(true)
+
             holder.setsAdapter = WorkoutSetsAdapter(
-                exerciseId = item.exerciseId,
                 onWeightChanged = onSetWeightChanged,
                 onRepsChanged = onSetRepsChanged
             )
             holder.b.rvSets.adapter = holder.setsAdapter
-        } else {
-            // IMPORTANT: update exerciseId if ViewHolder is reused
-            holder.setsAdapter?.exerciseId = item.exerciseId
         }
 
         holder.setsAdapter?.submitList(item.sets)
@@ -64,3 +62,4 @@ class WorkoutItemsAdapter(
         }
     }
 }
+

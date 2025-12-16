@@ -55,8 +55,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun uploadExercises() {
-        binding.btnDone.setOnClickListener {
+    private fun uploadExercises() = with(binding) {
+        btnDone.setOnClickListener {
+            root.clearFocus()
             viewModel.processIntent(TodayIntent.SaveClicked)
         }
     }

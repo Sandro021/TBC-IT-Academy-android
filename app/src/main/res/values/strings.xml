@@ -16,4 +16,12 @@
     <string name="add_exercises_or_workout_program_to_start_logging_your_activity">Add exercises or workout program to start logging your activity</string>
     <string name="add_exercises">Add exercises</string>
     <string name="done">Done</string>
+    <string name="add_set">Add set</string>
+    <string name="kg">kg</string>
+    <string name="_1">1</string>
+    <string name="reps">reps</string>
+    <string name="_13">13</string>
+    <string name="mon">Mon</string>
+    <string name="remember_me">Remember me</string>
+    <string name="new_exercise_name">New exercise name</string>
 </resources>

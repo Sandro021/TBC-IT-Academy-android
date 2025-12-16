@@ -5,7 +5,7 @@
     android:layout_height="64dp"
     android:paddingHorizontal="12dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgIcon"
         android:layout_width="32dp"
         android:layout_height="32dp"
