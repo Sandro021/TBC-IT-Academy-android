@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gymtracker.databinding.ItemWeekDayBinding
+import androidx.core.graphics.toColorInt
 
 class CalendarAdapter(
     private val onClick: (CalendarModel) -> Unit
@@ -34,10 +35,10 @@ class CalendarAdapter(
 
             if (item.isSelected) {
                 tvDayNumber.setBackgroundResource(com.example.gymtracker.R.drawable.bg_day_selected)
-                tvDayNumber.setTextColor(android.graphics.Color.parseColor("#1F232A"))
+                tvDayNumber.setTextColor("#1F232A".toColorInt())
             } else {
                 tvDayNumber.setBackgroundResource(com.example.gymtracker.R.drawable.bg_day_unselected)
-                tvDayNumber.setTextColor(android.graphics.Color.parseColor("#BFC5CE"))
+                tvDayNumber.setTextColor("#BFC5CE".toColorInt())
             }
 
             root.setOnClickListener { onClick(item) }

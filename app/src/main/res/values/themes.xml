@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.GymTracker" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
+
+    <style name="Theme.GymTracker.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#1F232A</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.GymTracker</item>
+    </style>
 </resources>

@@ -9,9 +9,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.gymtracker.R
 import com.example.gymtracker.databinding.FragmentRegisterBinding
-import com.example.gymtracker.presentation.screen.register.RegisterIntent
-import com.example.gymtracker.presentation.screen.register.RegisterState
-import com.example.gymtracker.presentation.screen.register.RegisterViewModel
 import com.example.gymtracker.presentation.common.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -40,6 +37,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         btRegister.setOnClickListener {
             viewModel.processIntent(RegisterIntent.ClickRegister)
         }
+        btGoBack.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_welcomeFragment)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -59,7 +59,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
         }
 
         if (state.navigateToHome) {
-            findNavController().navigate(R.id.action_registerFragment_to_homeFragment2)
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment2)
             viewModel.processIntent(RegisterIntent.NavigationHandled)
         }
     }

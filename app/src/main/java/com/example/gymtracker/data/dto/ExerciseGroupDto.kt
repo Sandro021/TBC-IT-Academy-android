@@ -1,4 +1,4 @@
-package com.example.gymtracker.data.firestore
+package com.example.gymtracker.data.dto
 
 data class ExerciseGroupDto(
     val title: String = "",

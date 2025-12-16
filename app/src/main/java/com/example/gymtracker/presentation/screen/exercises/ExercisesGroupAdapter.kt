@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gymtracker.R
 import com.example.gymtracker.databinding.ItemExerciseGroupBinding
 import com.example.gymtracker.domain.model.ExerciseGroup
 
@@ -35,8 +36,7 @@ class ExerciseGroupsAdapter(
         holder.binding.tvTitle.text = item.title
         holder.binding.tvCount.text = item.exerciseCount.toString()
 
-        // TODO: set icon properly (use drawable mapping)
-        holder.binding.imgIcon.setImageResource(android.R.drawable.ic_menu_info_details)
+        holder.binding.imgIcon.setBackgroundResource(R.drawable.splash)
 
         holder.binding.root.setOnClickListener { onClick(item) }
     }

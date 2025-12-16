@@ -40,6 +40,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         rbRemember.setOnCheckedChangeListener { _, isChecked ->
             viewModel.processIntent(LoginIntent.RememberMeChanged(isChecked))
         }
+        btGoBack.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment2_to_welcomeFragment)
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

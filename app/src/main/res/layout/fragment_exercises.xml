@@ -42,6 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnNewExercise" />
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDone"
         android:layout_width="wrap_content"
@@ -51,6 +52,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <ProgressBar
         android:id="@+id/progress"

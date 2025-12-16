@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.gymtracker.domain.model.WorkoutItem
 import com.example.gymtracker.domain.model.WorkoutSet
 import com.example.gymtracker.domain.usecase.DeleteWorkoutItemUseCase
+import com.example.gymtracker.domain.usecase.LogoutUseCase
 import com.example.gymtracker.domain.usecase.ObserveWorkoutUseCase
 import com.example.gymtracker.domain.usecase.SaveWorkoutUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,10 +23,11 @@ import javax.inject.Inject
 class CalendarViewModel @Inject constructor(
     private val observeWorkoutUseCase: ObserveWorkoutUseCase,
     private val saveWorkoutUseCase: SaveWorkoutUseCase,
-    private val deleteWorkoutItemUseCase: DeleteWorkoutItemUseCase
+    private val deleteWorkoutItemUseCase: DeleteWorkoutItemUseCase,
+    private val logoutUseCase: LogoutUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(TodayState())
+    private val _state = MutableStateFlow(CalendarState())
     val state = _state.asStateFlow()
 
     private val startDate = LocalDate.now().minusYears(2)
@@ -39,25 +41,27 @@ class CalendarViewModel @Inject constructor(
         observeWorkoutForDate(today)
     }
 
-    fun processIntent(intent: TodayIntent) {
+    fun processIntent(intent: CalendarIntent) {
         when (intent) {
-            is TodayIntent.DateSelected -> onDateSelected(intent.date)
-            is TodayIntent.ExercisesPicked -> onExercisesPicked(intent.selected)
-            is TodayIntent.SetRepsChanged -> onSetRepsChanged(
+            is CalendarIntent.DateSelected -> onDateSelected(intent.date)
+            is CalendarIntent.ExercisesPicked -> onExercisesPicked(intent.selected)
+            is CalendarIntent.SetRepsChanged -> onSetRepsChanged(
                 intent.exerciseId,
                 intent.setNumber,
                 intent.value
             )
 
-            is TodayIntent.SetWeightChanged -> onSetWeightChanged(
+            is CalendarIntent.SetWeightChanged -> onSetWeightChanged(
                 intent.exerciseId,
                 intent.setNumber,
                 intent.value
             )
 
-            is TodayIntent.SaveClicked -> onSaveClicked()
-            is TodayIntent.DeleteExercise -> deleteExercise(intent.exerciseId)
-            is TodayIntent.AddSetClicked -> onAddSetClicked(intent.exerciseId)
+            is CalendarIntent.SaveClicked -> onSaveClicked()
+            is CalendarIntent.DeleteExercise -> deleteExercise(intent.exerciseId)
+            is CalendarIntent.AddSetClicked -> onAddSetClicked(intent.exerciseId)
+            is CalendarIntent.ClickLogout -> logOut()
+            is CalendarIntent.NavigationHandled -> _state.update { it.copy(navigateToLogin = false) }
         }
     }
 
@@ -65,6 +69,13 @@ class CalendarViewModel @Inject constructor(
     private fun onDateSelected(date: LocalDate) {
         buildCalendar(date)
         observeWorkoutForDate(date)
+    }
+
+    private fun logOut() {
+        viewModelScope.launch {
+            logoutUseCase()
+            _state.update { it.copy(navigateToLogin = true) }
+        }
     }
 
     private fun onSetWeightChanged(exerciseId: String, setNumber: Int, value: String) {
@@ -151,11 +162,16 @@ class CalendarViewModel @Inject constructor(
             s.copy(
                 items = s.items.map { item ->
                     if (item.exerciseId == exerciseId) {
-                        val nextNumber = item.sets.size + 1
+
+                        val maxNumber = item.sets.maxOfOrNull { it.number } ?: 0
+                        val nextNumber = maxNumber + 1
+
                         item.copy(
                             sets = item.sets + WorkoutSetModel(
                                 exerciseId = exerciseId,
-                                number = nextNumber
+                                number = nextNumber,
+                                weight = "",
+                                reps = ""
                             )
                         )
                     } else item

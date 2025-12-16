@@ -1,6 +1,6 @@
 package com.example.gymtracker.di
 
-import com.example.gymtracker.data.firestore.ExerciseGroupRepositoryImpl
+import com.example.gymtracker.data.repository.ExerciseGroupRepositoryImpl
 import com.example.gymtracker.data.repository.ExerciseRepositoryImpl
 import com.example.gymtracker.data.repository.WorkoutRepositoryImpl
 import com.example.gymtracker.domain.repository.ExerciseGroupRepository

@@ -15,9 +15,6 @@ class WorkoutSetsAdapter(
     private val onRepsChanged: (exerciseId: String, setNumber: Int, value: String) -> Unit
 ) : ListAdapter<WorkoutSetModel, WorkoutSetsAdapter.VH>(Diff) {
 
-    init {
-        setHasStableIds(true)
-    }
 
     object Diff : DiffUtil.ItemCallback<WorkoutSetModel>() {
         override fun areItemsTheSame(o: WorkoutSetModel, n: WorkoutSetModel) =
@@ -26,10 +23,6 @@ class WorkoutSetsAdapter(
         override fun areContentsTheSame(o: WorkoutSetModel, n: WorkoutSetModel) = o == n
     }
 
-    override fun getItemId(position: Int): Long {
-        val item = getItem(position)
-        return (item.exerciseId.hashCode() * 31L + item.number.toLong())
-    }
 
     class VH(val b: ItemWorkoutSetBinding) : RecyclerView.ViewHolder(b.root) {
         var weightWatcher: TextWatcher? = null
@@ -49,13 +42,13 @@ class WorkoutSetsAdapter(
         val wEt = holder.b.etWeight
         val rEt = holder.b.etReps
 
-        // ---- Clean up old listeners ----
+
         holder.weightWatcher?.let { wEt.removeTextChangedListener(it) }
         holder.repsWatcher?.let { rEt.removeTextChangedListener(it) }
         wEt.onFocusChangeListener = null
         rEt.onFocusChangeListener = null
 
-        // ---- Bind text safely (DO NOT overwrite while user is typing) ----
+
         if (!wEt.hasFocus() && wEt.text.toString() != set.weight) {
             wEt.setText(set.weight)
         }
@@ -63,15 +56,15 @@ class WorkoutSetsAdapter(
             rEt.setText(set.reps)
         }
 
-        // keep cursor at end if focused
+
         if (wEt.hasFocus()) wEt.setSelection(wEt.text?.length ?: 0)
         if (rEt.hasFocus()) rEt.setSelection(rEt.text?.length ?: 0)
 
-        // Optional watchers (not dispatching to VM on each char)
-        holder.weightWatcher = wEt.doAfterTextChanged { /* no-op */ }
-        holder.repsWatcher = rEt.doAfterTextChanged { /* no-op */ }
 
-        // ---- Dispatch ONLY when editing finished ----
+        holder.weightWatcher = wEt.doAfterTextChanged { }
+        holder.repsWatcher = rEt.doAfterTextChanged { }
+
+
         wEt.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 onWeightChanged(set.exerciseId, set.number, wEt.text.toString())
@@ -80,7 +73,6 @@ class WorkoutSetsAdapter(
 
         rEt.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                // Fix "05" issue when you show "0" by default
                 if (rEt.text.toString() == "0") {
                     rEt.setText("")
                 }

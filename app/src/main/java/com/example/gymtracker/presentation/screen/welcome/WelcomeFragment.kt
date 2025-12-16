@@ -32,7 +32,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { navigate ->
                     if (navigate) {
-                        findNavController().navigate(R.id.action_welcomeFragment_to_userFragment)
+                        findNavController().navigate(R.id.action_welcomeFragment_to_homeFragment2)
                         viewModel.navigationHandled()
                     }
                 }

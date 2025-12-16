@@ -1,11 +1,13 @@
-package com.example.gymtracker.data.firestore
+package com.example.gymtracker.data.repository
 
 import android.util.Log
+import com.example.gymtracker.data.dto.ExerciseGroupDto
 import com.example.gymtracker.domain.model.ExerciseGroup
 import com.example.gymtracker.domain.repository.ExerciseGroupRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -103,10 +105,9 @@ class ExerciseGroupRepositoryImpl @Inject constructor(
             groupsRef.document(groupId)
                 .set(
                     mapOf("exerciseCount" to count),
-                    com.google.firebase.firestore.SetOptions.merge()
+                    SetOptions.merge()
                 )
                 .await()
         }
     }
 }
-

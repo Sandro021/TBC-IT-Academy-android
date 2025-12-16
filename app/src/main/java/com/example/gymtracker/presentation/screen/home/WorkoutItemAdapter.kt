@@ -44,8 +44,8 @@ class WorkoutItemsAdapter(
 
         if (holder.setsAdapter == null) {
             holder.b.rvSets.layoutManager = LinearLayoutManager(holder.itemView.context)
-            holder.b.rvSets.itemAnimator = null // ✅ reduce focus/cursor glitches in nested RV
-            holder.b.rvSets.setHasFixedSize(true)
+            holder.b.rvSets.itemAnimator = null
+
 
             holder.setsAdapter = WorkoutSetsAdapter(
                 onWeightChanged = onSetWeightChanged,

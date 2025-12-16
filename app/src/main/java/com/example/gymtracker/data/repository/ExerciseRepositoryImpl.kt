@@ -5,8 +5,8 @@ import com.example.gymtracker.domain.repository.ExerciseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -56,6 +56,15 @@ class ExerciseRepositoryImpl @Inject constructor(
 
         val reg = ref.addSnapshotListener { snap, err ->
             if (err != null) {
+                if (err.code == FirebaseFirestoreException.Code.PERMISSION_DENIED ||
+                    err.code == FirebaseFirestoreException.Code.UNAUTHENTICATED
+                ) {
+
+                    close()
+                    return@addSnapshotListener
+                }
+
+
                 close(err)
                 return@addSnapshotListener
             }

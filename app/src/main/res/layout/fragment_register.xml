@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="6dp"
-        android:background="@drawable/edit_text_bg"
         android:layout_marginHorizontal="20dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/email"
+        android:padding="6dp"
         android:textSize="25sp" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -26,9 +26,10 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
-        android:padding="6dp"
         android:background="@drawable/edit_text_bg"
         android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="6dp"
         android:textSize="25sp" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -36,11 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/edit_text_bg"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
-        android:padding="6dp"
+        android:background="@drawable/edit_text_bg"
         android:hint="@string/repeat_password"
+        android:inputType="textPassword"
+        android:padding="6dp"
         android:textSize="25sp" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -48,10 +50,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:paddingHorizontal="15dp"
-        android:textColor="@color/white"
         android:background="@drawable/button_bg"
+        android:paddingHorizontal="15dp"
         android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_bg"
+        android:paddingHorizontal="15dp"
+        android:text="@string/go_back"
+        android:textColor="@color/white"
         android:textSize="25sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
