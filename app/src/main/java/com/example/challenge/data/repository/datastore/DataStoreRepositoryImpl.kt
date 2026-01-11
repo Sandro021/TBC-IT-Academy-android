@@ -12,13 +12,17 @@ class DataStoreRepositoryImpl @Inject constructor(
 ) : DataStoreRepository {
     override suspend fun saveString(key: Preferences.Key<String>, value: String?) {
         dataStore.edit { settings ->
-            settings[key] = value as String
+            if (value.isNullOrBlank()) {
+                settings.remove(key)
+            } else {
+                settings[key] = value
+            }
         }
     }
 
     override fun readString(key: Preferences.Key<String>) = dataStore.data
         .map { preferences ->
-            preferences[key] ?: ""
+            preferences[key]
         }
 
     override suspend fun clear() {

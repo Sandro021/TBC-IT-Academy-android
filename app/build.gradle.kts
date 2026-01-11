@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     kotlin("kapt")
+    id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android")
 }
 
@@ -72,6 +73,7 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.57.2")
     implementation("androidx.room:room-runtime-android:2.8.4")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
     kapt("com.google.dagger:hilt-android-compiler:2.57.2")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -80,4 +82,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
 }

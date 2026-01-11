@@ -10,6 +10,7 @@
         android:name="com.example.challenge.presentation.screen.connection.ConnectionsFragment"
         android:label="fragment_connections"
         tools:layout="@layout/fragment_connections" >
+        <deepLink app:uri="myapp://connections" />
         <action
             android:id="@+id/action_connectionsFragment_to_logInFragment"
             app:destination="@id/logInFragment" />
@@ -19,12 +20,13 @@
         android:name="com.example.challenge.presentation.screen.log_in.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
+        <deepLink app:uri="myapp://main" />
         <action
             android:id="@+id/action_logInFragment_to_connectionsFragment"
             app:destination="@id/connectionsFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.challenge.presentation.MainActivity"
+        android:name="com.example.challenge.presentation.screen.MainActivity"
         android:label="MainActivity" />
 </navigation>
