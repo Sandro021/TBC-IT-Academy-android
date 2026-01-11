@@ -17,6 +17,12 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"https://mocki.io/v1/\""
+        )
     }
 
     buildTypes {
@@ -26,11 +32,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField(
-                "String",
-                "BASE_URL",
-                "\"https://mocki.io/v1/\""
-            )
+
         }
     }
 
@@ -45,10 +47,9 @@ android {
 
     buildFeatures {
         buildConfig = true
-    }
-    buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -69,13 +70,14 @@ dependencies {
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    implementation("com.google.dagger:hilt-android:2.50")
+    implementation("com.google.dagger:hilt-android:2.57.2")
     implementation("androidx.room:room-runtime-android:2.8.4")
-    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.57.2")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

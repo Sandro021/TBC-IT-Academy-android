@@ -7,12 +7,14 @@ import com.example.challenge.domain.usecase.datastore.SaveTokenUseCase
 import com.example.challenge.domain.usecase.log_in.LogInUseCase
 import com.example.challenge.domain.usecase.validator.EmailValidatorUseCase
 import com.example.challenge.domain.usecase.validator.PasswordValidatorUseCase
-import com.example.challenge.presentation.event.log_in.LogInEvent
-import com.example.challenge.presentation.state.log_in.LogInState
+import com.example.challenge.presentation.screen.log_in.contract.LogInState
+import com.example.challenge.presentation.screen.log_in.contract.LoginEvent
+import com.example.challenge.presentation.screen.log_in.contract.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -26,15 +28,16 @@ class LogInViewModel @Inject constructor(
     private val passwordValidator: PasswordValidatorUseCase
 ) : ViewModel() {
     private val _logInState = MutableStateFlow(LogInState())
-    val logInState: SharedFlow<LogInState> = _logInState.asStateFlow()
+    val logInState: StateFlow<LogInState> = _logInState.asStateFlow()
 
-    private val _uiEvent = MutableSharedFlow<LogInUiEvent>()
-    val uiEvent: SharedFlow<LogInUiEvent> get() = _uiEvent
+    private val _uiEvent = MutableSharedFlow<UiEvent>()
+    val uiEvent =  _uiEvent.asSharedFlow()
 
-    fun onEvent(event: LogInEvent) {
+    fun onEvent(event: LoginEvent) {
         when (event) {
-            is LogInEvent.LogIn -> validateForm(email = event.email, password = event.password)
-            is LogInEvent.ResetErrorMessage -> updateErrorMessage(message = null)
+            is LoginEvent.LogIn -> validateForm(email = event.email, password = event.password)
+            is LoginEvent.ResetErrorMessage -> updateErrorMessage(message = null)
+
         }
     }
 
@@ -51,7 +54,7 @@ class LogInViewModel @Inject constructor(
                     is Resource.Success -> {
                         _logInState.update { currentState -> currentState.copy(accessToken = it.data.accessToken) }
                         saveTokenUseCase(it.data.accessToken)
-                        _uiEvent.emit(LogInUiEvent.NavigateToConnections)
+                        _uiEvent.emit(UiEvent.NavigateToConnections)
                     }
 
                     is Resource.Error -> updateErrorMessage(message = it.errorMessage)
@@ -80,9 +83,6 @@ class LogInViewModel @Inject constructor(
         _logInState.update { currentState -> currentState.copy(errorMessage = message) }
     }
 
-    sealed interface LogInUiEvent {
-        object NavigateToConnections : LogInUiEvent
-    }
 }
 
 

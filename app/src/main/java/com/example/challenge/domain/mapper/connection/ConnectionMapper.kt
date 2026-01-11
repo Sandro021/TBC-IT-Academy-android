@@ -1,7 +1,7 @@
-package com.example.challenge.VSS.presentation.mapper.connection
+package com.example.challenge.domain.mapper.connection
 
 import com.example.challenge.domain.model.connection.GetConnection
-import com.example.challenge.presentation.model.connection.Connection
+import com.example.challenge.presentation.screen.connection.model.Connection
 
 fun GetConnection.toPresenter() =
     Connection(

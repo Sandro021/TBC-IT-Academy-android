@@ -1,4 +1,4 @@
-package com.example.challenge.presentation.event.conection
+package com.example.challenge.presentation.screen.connection.contract
 
 sealed class ConnectionEvent {
     object FetchConnections : ConnectionEvent()

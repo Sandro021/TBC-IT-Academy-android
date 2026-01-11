@@ -1,17 +1,18 @@
 package com.example.challenge.presentation.screen.connection
 
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challenge.databinding.FragmentConnectionsBinding
 import com.example.challenge.presentation.common.BaseFragment
-import com.example.challenge.presentation.event.conection.ConnectionEvent
 import com.example.challenge.presentation.extension.showSnackBar
-import com.example.challenge.presentation.state.connection.ConnectionState
+import com.example.challenge.presentation.screen.connection.adapter.ConnectionsRecyclerAdapter
+import com.example.challenge.presentation.screen.connection.contract.ConnectionEvent
+import com.example.challenge.presentation.screen.connection.contract.ConnectionState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -33,7 +34,8 @@ class ConnectionsFragment :
     }
 
     override fun listeners() {
-
+        bindViewActionListeners()
+        bindObserves()
     }
 
     fun bindViewActionListeners() {
@@ -75,7 +77,7 @@ class ConnectionsFragment :
     }
 
     private fun handleNavigationEvents(event: ConnectionsViewModel.ConnectionUiEvent) {
-        //findNavController().navigate(ConnectionsFragmentDirections.actionFriendsFragmentToLogInFragment())
+        findNavController().navigate(ConnectionsFragmentDirections.actionConnectionsFragmentToLogInFragment())
     }
 }
 

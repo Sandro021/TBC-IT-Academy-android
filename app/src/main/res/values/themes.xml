@@ -1,8 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Challenge" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Challenge" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
     </style>
 
     <style name="Theme.Challenge" parent="Base.Theme.Challenge" />
+
+    <style name="Theme.Challenge.Splash" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/white</item>
+
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item>
+
+
+        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+
+
+        <item name="postSplashScreenTheme">@style/Theme.Challenge</item>
+    </style>
 </resources>

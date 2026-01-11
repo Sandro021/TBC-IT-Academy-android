@@ -1,11 +1,6 @@
 package com.example.challenge.data.common
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import com.example.challenge.domain.user_data_key.PreferenceKeys
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 
 class HandleResponse() {

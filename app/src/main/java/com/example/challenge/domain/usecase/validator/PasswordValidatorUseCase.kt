@@ -1,5 +1,9 @@
 package com.example.challenge.domain.usecase.validator
 
-class PasswordValidatorUseCase {
+import javax.inject.Inject
+
+class PasswordValidatorUseCase@Inject constructor(
+
+) {
     operator fun invoke(password: String): Boolean = password.isNotBlank()
 }

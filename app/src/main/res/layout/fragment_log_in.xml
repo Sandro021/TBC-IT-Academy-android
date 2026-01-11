@@ -12,8 +12,8 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_margin="20dp"
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
@@ -23,8 +23,8 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_margin="20dp"
         android:layout_marginTop="10dp"
         android:hint="@string/password"
@@ -36,10 +36,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogIn"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="10dp"
+        android:background="@color/black"
         android:text="@string/log_in"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

@@ -8,6 +8,7 @@ import com.example.challenge.data.service.connection.ConnectionsService
 import com.example.challenge.domain.model.connection.GetConnection
 import com.example.challenge.domain.repository.connection.ConnectionsRepository
 import kotlinx.coroutines.flow.Flow
+import kotlin.collections.map
 import javax.inject.Inject
 
 class ConnectionsRepositoryImpl @Inject constructor(
@@ -18,7 +19,7 @@ class ConnectionsRepositoryImpl @Inject constructor(
     override suspend fun getConnections(): Flow<Resource<List<GetConnection>>> {
         return handleResponse.safeApiCall {
             connectionsService.getConnections()
-        }.asResource {
+        }.asResource { it ->
             it.map {
                 it.toDomain()
             }

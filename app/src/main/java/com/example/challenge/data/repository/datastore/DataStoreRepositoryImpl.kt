@@ -10,9 +10,9 @@ import javax.inject.Inject
 class DataStoreRepositoryImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : DataStoreRepository {
-    override suspend fun saveString(key: Preferences.Key<String>, value: String) {
+    override suspend fun saveString(key: Preferences.Key<String>, value: String?) {
         dataStore.edit { settings ->
-            settings[key] = value
+            settings[key] = value as String
         }
     }
 

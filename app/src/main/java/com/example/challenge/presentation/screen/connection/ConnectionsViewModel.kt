@@ -2,16 +2,17 @@ package com.example.challenge.presentation.screen.connection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.copy
+import com.example.challenge.domain.mapper.connection.toPresenter
 import com.example.challenge.data.common.Resource
 import com.example.challenge.domain.usecase.connection.GetConnectionsUseCase
 import com.example.challenge.domain.usecase.datastore.ClearDataStoreUseCase
-import com.example.challenge.presentation.event.conection.ConnectionEvent
-import com.example.challenge.presentation.state.connection.ConnectionState
+import com.example.challenge.presentation.screen.connection.contract.ConnectionEvent
+import com.example.challenge.presentation.screen.connection.contract.ConnectionState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class ConnectionsViewModel @Inject constructor(
 ) :
     ViewModel() {
     private val _connectionState = MutableStateFlow(ConnectionState())
-    val connectionState: SharedFlow<ConnectionState> = _connectionState.asStateFlow()
+    val connectionState: StateFlow<ConnectionState> = _connectionState.asStateFlow()
 
     private val _uiEvent = MutableSharedFlow<ConnectionUiEvent>()
     val uiEvent: SharedFlow<ConnectionUiEvent> get() = _uiEvent
@@ -40,7 +41,7 @@ class ConnectionsViewModel @Inject constructor(
 
     private fun fetchConnections() {
         viewModelScope.launch {
-            getConnectionsUseCase().collect {
+            getConnectionsUseCase().collect { it ->
                 when (it) {
                     is Resource.Loading -> _connectionState.update { currentState ->
                         currentState.copy(

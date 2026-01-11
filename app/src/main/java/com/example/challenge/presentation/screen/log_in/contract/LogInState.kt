@@ -1,4 +1,4 @@
-package com.example.challenge.presentation.state.log_in
+package com.example.challenge.presentation.screen.log_in.contract
 
 data class LogInState(
     val isLoading: Boolean = false,

@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
@@ -57,12 +58,15 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
+
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(
                 MoshiConverterFactory.create(
-                    Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                    moshi
                 )
             )
             .build()
