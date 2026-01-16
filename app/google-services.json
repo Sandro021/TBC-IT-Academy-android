@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70070661914",
+    "project_id": "login-registration-fc544",
+    "storage_bucket": "login-registration-fc544.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70070661914:android:82cd7a916e96d79b1072a3",
+        "android_client_info": {
+          "package_name": "com.example.homework_33"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByN-6pzmv1pqNK5oOD11YO1_gK0_gjn0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

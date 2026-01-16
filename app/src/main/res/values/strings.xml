@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Homework-33</string>
+    <string name="log_in">Log in</string>
+    <string name="jane_example_com">jane@example.com</string>
+    <string name="password_hint">********</string>
+    <string name="loading">Loading...</string>
+    <string name="photo">photo</string>
+    <string name="pawel_czerwinski">Pawel Czerwinski</string>
+    <string name="pawel_czerwinski_second">\@pawel_czerwinski</string>
+    <string name="log_in_caps">LOG IN</string>
+    <string name="register">REGISTER</string>
+    <string name="register_no_caps">Register</string>
+    <string name="next">Next</string>
+    <string name="welcome">Welcome</string>
+</resources>
