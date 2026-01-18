@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -90,5 +91,10 @@ dependencies {
     implementation("com.google.maps.android:android-maps-utils:3.8.2")
 
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation("androidx.navigation3:navigation3-runtime:1.1.0-alpha02")
+    implementation("androidx.navigation3:navigation3-ui:1.1.0-alpha02")
     implementation("io.coil-kt:coil:2.6.0")
+    implementation("androidx.compose.animation:animation")
+
 }

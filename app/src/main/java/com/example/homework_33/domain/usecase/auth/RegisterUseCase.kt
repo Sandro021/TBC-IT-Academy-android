@@ -1,4 +1,4 @@
-package com.example.homework_33.domain.usecase
+package com.example.homework_33.domain.usecase.auth
 
 import com.example.homework_33.domain.repository.AuthRepository
 import javax.inject.Inject

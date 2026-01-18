@@ -1,4 +1,4 @@
-package com.example.homework_33.presentation.screen
+package com.example.homework_33.presentation.screen.registration_next
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,10 +15,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,16 +26,30 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.homework_33.R
+import com.example.homework_33.presentation.screen.customFont
+import com.example.homework_33.presentation.screen.registration.EditTextField
+import com.example.homework_33.presentation.screen.registration_next.contract.RegistrationNextEffect
+import com.example.homework_33.presentation.screen.registration_next.contract.RegistrationNextEvent
 import com.example.homework_33.ui.theme.White
 
 
 @Composable
 fun RegisterNextScreen(
     onSignUp: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    viewModel: RegisterNextViewModel = hiltViewModel()
 ) {
-    var userName by remember { mutableStateOf("") }
+    val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.effect.collect { eff ->
+            when (eff) {
+                RegistrationNextEffect.NavigateToHome -> onSignUp()
+            }
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,7 +62,8 @@ fun RegisterNextScreen(
             tint = Color.Black,
             modifier = Modifier
                 .padding(20.dp)
-                .size(30.dp).clickable{onBack()}
+                .size(30.dp)
+                .clickable { onBack() }
         )
         Text(
             text = stringResource(R.string.register_no_caps),
@@ -57,11 +71,15 @@ fun RegisterNextScreen(
             fontFamily = customFont,
             fontSize = 40.sp
         )
-        EditTextField(userName, onValueChanged = { userName = it }, "user name")
+        EditTextField(
+            state.username,
+            onValueChanged = { viewModel.onEvent(RegistrationNextEvent.UsernameChanged(it)) },
+            stringResource(R.string.user_name)
+        )
 
         Spacer(Modifier.height(20.dp))
         Button(
-            onClick = onSignUp,
+            onClick = { viewModel.onEvent(RegistrationNextEvent.SubmitRegistration) },
             modifier = Modifier
                 .height(50.dp)
                 .padding(horizontal = 10.dp)
@@ -72,6 +90,8 @@ fun RegisterNextScreen(
         ) {
             Text(stringResource(R.string.next), color = Color.White)
         }
+
+        state.error?.let { Text(it, color = Color.Red) }
     }
 }
 

@@ -6,8 +6,9 @@ import com.example.homework_33.data.source.AuthRemoteDataSource
 import com.example.homework_33.domain.common.AppResult
 import com.example.homework_33.domain.model.User
 import com.example.homework_33.domain.repository.AuthRepository
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val remote: AuthRemoteDataSource
 ) : AuthRepository {
 

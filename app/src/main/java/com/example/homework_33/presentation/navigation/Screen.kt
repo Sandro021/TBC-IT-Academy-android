@@ -1,9 +1,9 @@
-package com.example.homework_33.presentation.navigation
-
-sealed class Screen(val route: String) {
-    data object Welcome : Screen("welcome")
-    data object Login : Screen("login")
-    data object Register : Screen("register")
-    data object RegisterNext : Screen("register_next")
-    data object Home : Screen("home")
-}
+//package com.example.homework_33.presentation.navigation
+//
+//sealed class Routes(val route: String) {
+//    data object Welcome : Routes("welcome")
+//    data object Login : Routes("login")
+//    data object Register : Routes("register")
+//    data object RegisterNext : Routes("register_next")
+//    data object Home : Routes("home")
+//}

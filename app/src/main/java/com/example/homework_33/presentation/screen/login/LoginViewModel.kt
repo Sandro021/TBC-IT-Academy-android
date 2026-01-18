@@ -3,7 +3,7 @@ package com.example.homework_33.presentation.screen.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.homework_33.domain.common.AppResult
-import com.example.homework_33.domain.usecase.LoginUseCase
+import com.example.homework_33.domain.usecase.auth.LoginUseCase
 import com.example.homework_33.presentation.mapper.toUiMessage
 import com.example.homework_33.presentation.screen.login.contract.LoginEffect
 import com.example.homework_33.presentation.screen.login.contract.LoginEvent

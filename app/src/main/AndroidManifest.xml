@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homework33">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.screen.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Homework33">
