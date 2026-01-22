@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Homework-35</string>
+    <string name="details">Details</string>
+    <string name="tracking_number">tracking number</string>
+    <string name="quantity">Quantity: %1$d</string>
+    <string name="subtotal">Subtotal: $%1$d</string>
+    <string name="order">Order #%1$d</string>
+    <string name="my_orders">My Orders</string>
+    <string name="bell_icon">bell icon</string>
+    <string name="menu_icon">menu icon</string>
+</resources>
